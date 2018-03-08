@@ -32,12 +32,13 @@ public class PunctuationSymbol {
     /**
      *
      * @param s String
-     * @throws Exception if string is more than 1 character length or if symbol is not resolved
+     * @throws IllegalArgumentException if string is more than 1 character length
+     * @throws NonResolvedSymbolException if symbol is not resolved
      */
     public PunctuationSymbol(String s) throws Exception{
         matcher = pattern.matcher(s);
         if (s.length()!= 1){
-            throw new IllegalAccessException();
+            throw new IllegalArgumentException();
         }else{
             if(matcher.find()){
                 character = s.charAt(0);

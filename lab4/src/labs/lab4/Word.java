@@ -56,4 +56,19 @@ public class Word {
             return true;
         }
     }
+
+    @Override
+    public String toString() {
+        StringBuffer string = new StringBuffer();
+        if (wordIsSeparator){
+            for (int i = 0; i < separatorWord.length; i++) {
+                string.append(separatorWord[i].character);
+            }
+        }else {
+            for (int i = 0; i < letterWord.length; i++) {
+                string.append(letterWord[i].character);
+            }
+        }
+        return string.toString();
+    }
 }
