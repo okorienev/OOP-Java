@@ -5,7 +5,10 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
+/**
+ * @deprecated use of collections was forbidden
+ * @see labs.lab3.Main
+ */
 public class Main {
     public static String path = "example.txt";
 
@@ -18,11 +21,10 @@ public class Main {
             string = new StringBuffer();
             while (in.hasNext()){
                 string.append(in.nextLine() + ' ');
-
             }
             return string;
         } catch (FileNotFoundException e) {
-            return new StringBuffer();
+            return new StringBuffer("FILE NOT FOUND");
         }
     }
 
@@ -77,5 +79,4 @@ public class Main {
             if(flag) System.out.println(operator);
         }
     }
-
 }
