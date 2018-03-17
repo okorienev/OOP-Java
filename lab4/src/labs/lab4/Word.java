@@ -12,6 +12,7 @@ public class Word {
     public PunctuationSymbol[] separatorWord;
     public boolean wordIsSeparator;
 
+
     public Word(AlphabetSymbol[] alphabetSymbols){
         letterWord = new AlphabetSymbol[alphabetSymbols.length];
         letterWord = alphabetSymbols;
@@ -23,6 +24,12 @@ public class Word {
         separatorWord = punctuationSymbols;
         wordIsSeparator = true;
     }
+
+    /**
+     *
+     * @param s String
+     * @throws NonResolvedSymbolException if word has nor alphabet or punctuation characters or is mix of both
+     */
     public Word(String s)throws NonResolvedSymbolException{
         try{
             letterWord = new AlphabetSymbol[s.length()];
@@ -31,14 +38,10 @@ public class Word {
                 wordIsSeparator = false;
             }
         }catch (NonResolvedSymbolException e){
-            try{
-                separatorWord = new PunctuationSymbol[s.length()];
-                for (int i = 0; i < s.length(); i++) {
-                    separatorWord[i] = new PunctuationSymbol(s.charAt(i));
-                    wordIsSeparator = true;
-                }
-            }catch (NonResolvedSymbolException e2) {
-                e2.printStackTrace();
+            separatorWord = new PunctuationSymbol[s.length()];
+            for (int i = 0; i < s.length(); i++) {
+                separatorWord[i] = new PunctuationSymbol(s.charAt(i));
+                wordIsSeparator = true;
             }
 
         }

@@ -11,7 +11,7 @@ public class PunctuationSymbol {
     public char character;
     private Matcher matcher;
     private boolean debug = false;
-    private Pattern pattern = Pattern.compile("[.,?!:;\"\' ]");
+    private Pattern pattern = Pattern.compile("[.,?!:;\"\' -]");
     /**
      *
      * @param c character

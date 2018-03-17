@@ -1,6 +1,9 @@
 package labs.lab4;
 
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class Sentence {
     public Word[] sentence;
     public boolean sentenceEndedFlag;
@@ -15,13 +18,15 @@ public class Sentence {
         return result.toString();
     }
 
-    private boolean isSentenceEnded() throws Exception{
-        String[] endingConstructions ={".", "?", "!", "?!", "..."};
-        for (String s:endingConstructions) {
-            if(sentence[sentence.length - 1].toString().equals(s))
-                return true;
-        }
-        return false;
+    public boolean isSentenceEnded() throws Exception{
+        //DEPRECATED
+//        String[] endingConstructions ={".", "?", "!", "?!", "...", ". ", "? ", "! ", "?! ", "... "};
+//        for (String s:endingConstructions) {
+//            if(sentence[sentence.length - 1].toString().equals(s))
+//                return true;
+//        }
+//        return false;
+        return sentence[sentence.length - 1].toString().matches("(\\.|\\?|!|...|\\?!)\\s");
     }
 
     public Sentence(Word[] words) throws Exception{

@@ -25,12 +25,9 @@ public class Main {
     }
 
 
-    public static void main(String[] args) throws NonResolvedSymbolException{
-        String[] strings = {"In"," ","a"," ","hole"," ","in"," ","a"," ","ground"," ","there"," ",
-                "lived"," ","a"," ","hobbit","."};
-        Word[] words = new Word[strings.length];
-        for (int i = 0; i < strings.length; i++) {
-            words[i] = new Word(strings[i]);
+    public static void main(String[] args) throws Exception{
+        Text text = Text.textParser(getString(path));
+        System.out.println(text);
         }
     }
-}
+
