@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 */
 public class AlphabetSymbol {
     public char character;
-    Pattern pattern = Pattern.compile("[a-zA-Z]");
+    private Pattern pattern = Pattern.compile("[a-zA-Z]");
     private Matcher matcher;
     private static boolean debug = false;
     /**

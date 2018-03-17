@@ -3,7 +3,9 @@ package labs.lab4;
 /**
  * @author Oleksandr Korienev
  * Class for words. Word can be separator or common word.
- * Common word is @see AlphabetSymbol array, separatpor word is @see PunctuationSymbol array
+ * Common word is AlphabetSymbol array, separator word is PunctuationSymbol array
+ * @see AlphabetSymbol
+ * @see PunctuationSymbol
  */
 public class Word {
     public AlphabetSymbol[] letterWord;
@@ -23,13 +25,22 @@ public class Word {
     }
     public Word(String s)throws NonResolvedSymbolException{
         try{
-            new AlphabetSymbol(s.charAt(0));
             letterWord = new AlphabetSymbol[s.length()];
             for (int i = 0; i < s.length(); i++) {
                 letterWord[i] = new AlphabetSymbol(s.charAt(i));
+                wordIsSeparator = false;
             }
         }catch (NonResolvedSymbolException e){
-            new PunctuationSymbol(s.charAt(0));
+            try{
+                separatorWord = new PunctuationSymbol[s.length()];
+                for (int i = 0; i < s.length(); i++) {
+                    separatorWord[i] = new PunctuationSymbol(s.charAt(i));
+                    wordIsSeparator = true;
+                }
+            }catch (NonResolvedSymbolException e2) {
+                e2.printStackTrace();
+            }
+
         }
     }
     public boolean addAlphaChar(AlphabetSymbol alphabetSymbol){
@@ -37,10 +48,9 @@ public class Word {
             return false;
         }else {
             AlphabetSymbol[] word = new AlphabetSymbol[letterWord.length + 1];
-            for (int i = 0; i < letterWord.length; i++) {
-                word[i] = letterWord[i];
-            }
+            System.arraycopy(letterWord, 0, word, 0, letterWord.length);
             word[word.length - 1] = alphabetSymbol;
+            letterWord = word;
             return true;
         }
     }
@@ -48,11 +58,10 @@ public class Word {
         if (!wordIsSeparator){
             return false;
         }else {
-            PunctuationSymbol[] word = new PunctuationSymbol[letterWord.length + 1];
-            for (int i = 0; i < letterWord.length; i++) {
-                word[i] = separatorWord[i];
-            }
+            PunctuationSymbol[] word = new PunctuationSymbol[separatorWord.length + 1];
+            System.arraycopy(separatorWord, 0, word, 0, separatorWord.length);
             word[word.length - 1] = punctuationSymbol;
+            separatorWord = word;
             return true;
         }
     }
@@ -61,12 +70,12 @@ public class Word {
     public String toString() {
         StringBuffer string = new StringBuffer();
         if (wordIsSeparator){
-            for (int i = 0; i < separatorWord.length; i++) {
-                string.append(separatorWord[i].character);
+            for (PunctuationSymbol aSeparatorWord : separatorWord) {
+                string.append(aSeparatorWord.character);
             }
         }else {
-            for (int i = 0; i < letterWord.length; i++) {
-                string.append(letterWord[i].character);
+            for (AlphabetSymbol aLetterWord : letterWord) {
+                string.append(aLetterWord.character);
             }
         }
         return string.toString();
