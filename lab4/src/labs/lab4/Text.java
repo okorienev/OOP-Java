@@ -38,6 +38,15 @@ public class Text {
         }
         return stringBuffer.toString();
     }
+
+    /**
+     * method to created new Text object from given StringBuffer
+     * @param stringBuffer StringBuffer with text to parse
+     * @return new Text object
+     * @throws Exception if  text  contains non-resolved symbols
+     * @// TODO: 18.03.2018 overload method for String and StringBuilder(optionally)
+     * @// TODO: 18.03.2018 test parsing with JUnit(optionally)
+     */
     public static Text textParser(StringBuffer stringBuffer) throws Exception {
         Matcher matcherAlpha = alphaWordPattern.matcher(stringBuffer.toString());
         Matcher matcherSeparator = separatorWordPattern.matcher(stringBuffer.toString());
