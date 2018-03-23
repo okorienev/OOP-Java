@@ -44,7 +44,6 @@ public class Main {
                 result.addWord(word);
                 result.addWord(new Word(" "));
             }
-            occurencteCounter = 0;
         }
         Word [] newResult = new Word[result.sentence.length - 2];
         System.arraycopy(result.sentence, 2, newResult, 0, newResult.length);
@@ -53,7 +52,6 @@ public class Main {
 
     public static void main(String[] args) throws Exception{
         Text text = Text.textParser(getString(path));
-        System.out.println(text);
         System.out.println(findUniqueWords(text.text[0], text));
         }
     }
