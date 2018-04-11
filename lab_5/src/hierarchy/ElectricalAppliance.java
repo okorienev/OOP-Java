@@ -1,14 +1,16 @@
+package hierarchy;
+
 /**
  * abstract class representing Electrical Appliance
  * @author Oleksandr Korienev
  */
 
-public abstract class ElectricalAplliance {
+public abstract class ElectricalAppliance {
     private int yearOfIssue;
     private String manufacturer;
     private double power;
     private double radiation;
-    private boolean isPlugged;
+    private boolean isPlugged = false;
 
     /**
      * @param year year of manufacturing
@@ -67,6 +69,5 @@ public abstract class ElectricalAplliance {
         return String.format("Manufacturer: %s\nYear: %d\nPower: %s\nRadiation: %s\n",
                 manufacturer, yearOfIssue, power, radiation);
     }
-
 }
 

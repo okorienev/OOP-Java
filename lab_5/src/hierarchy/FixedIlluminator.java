@@ -1,3 +1,5 @@
+package hierarchy;
+
 public class FixedIlluminator extends Illuminator{
     private int lampsAmount;
 

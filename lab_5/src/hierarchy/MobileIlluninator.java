@@ -1,4 +1,8 @@
-public class MobileIlluninator extends Illuminator{
+package hierarchy;
+
+import hierarchy.Illuminator;
+
+public class MobileIlluninator extends Illuminator {
     String binding;
 
     public MobileIlluninator(String binding) {

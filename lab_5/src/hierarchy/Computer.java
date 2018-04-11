@@ -1,4 +1,6 @@
-public abstract class Computer extends ElectricalAplliance {
+package hierarchy;
+
+public abstract class Computer extends ElectricalAppliance {
     private String systemArchitecture;
 
     public String getSystemArchitecture() {

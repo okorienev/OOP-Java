@@ -1,3 +1,5 @@
+package hierarchy;
+
 public class DesktopComputer extends Computer {
     private String motherboard;
     private String CPU;

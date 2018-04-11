@@ -1,8 +1,10 @@
+package hierarchy;
+
 /**
  *
  */
 
-public abstract class Illuminator extends ElectricalAplliance {
+public abstract class Illuminator extends ElectricalAppliance {
     private double luminousFlux;
 
     public double getLuminousFlux() {

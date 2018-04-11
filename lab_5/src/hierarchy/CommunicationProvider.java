@@ -1,12 +1,14 @@
+package hierarchy;
+
 /**
  * @author Oleksandr Korienev
- * @see ElectricalAplliance
+ * @see ElectricalAppliance
  * class for routers, phones and other devices connected to different networks
  * pay to attention to lineTypes array to see the meaning of lineType number
  *
  */
 
-public class CommunicationProvider extends ElectricalAplliance {
+public class CommunicationProvider extends ElectricalAppliance {
     private String lineType;
     private int inputsNumber;
     private int outputsNumber;
