@@ -7,12 +7,23 @@ public class DesktopComputer extends Computer {
     private String RAM;
     private String HardDriveCapacity;
 
-    public DesktopComputer(String motherboard, String CPU, String GPU, String RAM, String hardDriveCapacity) {
+    public DesktopComputer(String motherboard, String CPU, String GPU, String RAM, String hardDriveCapacity,
+                           String manufacturer, String name, double power, double radiation, int yearOfIssue,
+                           String systemArchitecture) {
         this.motherboard = motherboard;
         this.CPU = CPU;
         this.GPU = GPU;
         this.RAM = RAM;
         this.HardDriveCapacity = hardDriveCapacity;
+        this.setSystemArchitecture(systemArchitecture);
+        this.setManufacturer(manufacturer);
+        this.setName(name);
+        this.setPower(power);
+        this.setRadiation(radiation);
+        this.setYearOfIssue(yearOfIssue);
+    }
+
+    public DesktopComputer() {
     }
 
     public String getMotherboard() {

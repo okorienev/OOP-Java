@@ -8,6 +8,7 @@ package hierarchy;
 public abstract class ElectricalAppliance {
     private int yearOfIssue;
     private String manufacturer;
+    private String name;
     private double power;
     private double radiation;
     private boolean isPlugged = false;
@@ -62,6 +63,14 @@ public abstract class ElectricalAppliance {
 
     public void setRadiation(double radiation1){
         radiation = radiation1;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override

@@ -2,6 +2,7 @@ package parsing;
 
 import Dictionary.ArrayDictionary;
 
+import java.awt.image.AreaAveragingScaleFilter;
 import java.io.*;
 
 public abstract class JSONParser {
@@ -32,6 +33,15 @@ public abstract class JSONParser {
             }
         }catch (IOException e){
             e.printStackTrace();
+        }
+        return result;
+    }
+    public static ArrayDictionary[] parseDirectory(String path){
+        File file = new File(path);
+        File[] files = file.listFiles();
+        ArrayDictionary[] result = new ArrayDictionary[files.length];
+        for (int i = 0; i < files.length; i++) {
+            result[i] = parseFile(files[i].getAbsolutePath());
         }
         return result;
     }

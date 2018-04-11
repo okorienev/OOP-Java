@@ -14,11 +14,20 @@ public class CommunicationProvider extends ElectricalAppliance {
     private int outputsNumber;
     private boolean isWireless;
 
-    public CommunicationProvider(String lineType, int inputsNumber, int outputsNumber, boolean isWireless) {
+    public CommunicationProvider() {
+    }
+
+    public CommunicationProvider(String lineType, int inputsNumber, int outputsNumber, boolean isWireless,
+                                 String manufacturer, String name, double power, double radiation, int yearOfIssue) {
         this.lineType = lineType;
         this.inputsNumber = inputsNumber;
         this.outputsNumber = outputsNumber;
         this.isWireless = isWireless;
+        this.setManufacturer(manufacturer);
+        this.setName(name);
+        this.setPower(power);
+        this.setRadiation(radiation);
+        this.setYearOfIssue(yearOfIssue);
     }
 
     public String getLineType() {
