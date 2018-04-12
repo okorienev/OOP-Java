@@ -11,4 +11,8 @@ public abstract class Computer extends ElectricalAppliance {
         this.systemArchitecture = systemArchitecture;
     }
 
+    @Override
+    public String toString() {
+        return super.toString() + '\n' + systemArchitecture;
+    }
 }

@@ -34,4 +34,11 @@ public class Laptop extends PortableComputer {
     public void setScreenIsTouch(boolean screenIsTouch) {
         ScreenIsTouch = screenIsTouch;
     }
+
+    @Override
+    public String toString() {
+        return this.getClass().getName() + '\n' + super.toString() + '\n' +
+                "keyboardType='" + keyboardType + '\'' +
+                ", ScreenIsTouch=" + ScreenIsTouch;
+    }
 }

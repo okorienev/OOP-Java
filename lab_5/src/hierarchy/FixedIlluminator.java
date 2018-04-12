@@ -20,4 +20,9 @@ public class FixedIlluminator extends Illuminator {
     public int getLampsAmount() {
         return lampsAmount;
     }
+
+    @Override
+    public String toString() {
+        return this.getClass().getName() + '\n'+ super.toString() + '\n' + this.lampsAmount;
+    }
 }

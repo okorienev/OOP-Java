@@ -21,4 +21,11 @@ abstract class PortableComputer extends Computer {
     public void setDisplaySize(double displaySize) {
         DisplaySize = displaySize;
     }
+
+    @Override
+    public String toString() {
+        return  super.toString() + '\n' +
+                "DisplayType='" + DisplayType + '\'' +
+                ", DisplaySize=" + DisplaySize;
+    }
 }

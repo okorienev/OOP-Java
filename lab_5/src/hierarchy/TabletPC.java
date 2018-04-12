@@ -35,4 +35,11 @@ public class TabletPC extends PortableComputer {
     public void setHasKeyboard(boolean hasKeyboard) {
         this.hasKeyboard = hasKeyboard;
     }
+
+    @Override
+    public String toString() {
+        return this.getClass().getName() + '\n' + super.toString() + '\n' +
+                "touchScreenType='" + touchScreenType + '\'' +
+                ", hasKeyboard=" + hasKeyboard;
+    }
 }

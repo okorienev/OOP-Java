@@ -2,9 +2,9 @@ package hierarchy;
 
 public class Tool extends ElectricalAppliance {
     private String toolType;
-    private String toolNoise;
+    private int toolNoise;
 
-    public Tool(String toolType, String toolNoise,
+    public Tool(String toolType, int toolNoise,
                 String manufacturer, String name, double power, double radiation, int yearOfIssue) {
         this.toolType = toolType;
         this.toolNoise = toolNoise;
@@ -26,11 +26,18 @@ public class Tool extends ElectricalAppliance {
         this.toolType = toolType;
     }
 
-    public String getToolNoise() {
+    public int getToolNoise() {
         return toolNoise;
     }
 
-    public void setToolNoise(String toolNoise) {
+    public void setToolNoise(int toolNoise) {
         this.toolNoise = toolNoise;
+    }
+
+    @Override
+    public String toString() {
+        return this.getClass().getName() + '\n' + super.toString() + '\n' +
+                "toolType='" + toolType + '\'' +
+                ", toolNoise='" + toolNoise + '\'';
     }
 }

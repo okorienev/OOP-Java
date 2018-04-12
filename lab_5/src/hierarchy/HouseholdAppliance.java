@@ -26,6 +26,6 @@ public class HouseholdAppliance extends ElectricalAppliance {
 
     @Override
     public String toString() {
-        return "HouseholdAppliance\n" + super.toString() + this.function;
+        return this.getClass().getName() + '\n' + super.toString() + '\n' + this.function;
     }
 }

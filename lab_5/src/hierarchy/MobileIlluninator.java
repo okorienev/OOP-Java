@@ -26,4 +26,10 @@ public class MobileIlluninator extends Illuminator {
     public void setBinding(String binding) {
         this.binding = binding;
     }
+
+    @Override
+    public String toString() {
+        return this.getClass().getName() + '\n' + super.toString() + '\n' +
+                "binding='" + binding + '\'';
+    }
 }

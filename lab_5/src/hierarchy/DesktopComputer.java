@@ -5,9 +5,9 @@ public class DesktopComputer extends Computer {
     private String CPU;
     private String GPU;
     private String RAM;
-    private String HardDriveCapacity;
+    private int HardDriveCapacity;
 
-    public DesktopComputer(String motherboard, String CPU, String GPU, String RAM, String hardDriveCapacity,
+    public DesktopComputer(String motherboard, String CPU, String GPU, String RAM, int hardDriveCapacity,
                            String manufacturer, String name, double power, double radiation, int yearOfIssue,
                            String systemArchitecture) {
         this.motherboard = motherboard;
@@ -58,11 +58,22 @@ public class DesktopComputer extends Computer {
         this.RAM = RAM;
     }
 
-    public String getHardDriveCapacity() {
+    public int getHardDriveCapacity() {
         return HardDriveCapacity;
     }
 
-    public void setHardDriveCapacity(String hardDriveCapacity) {
+    public void setHardDriveCapacity(int hardDriveCapacity) {
         HardDriveCapacity = hardDriveCapacity;
+    }
+
+    @Override
+    public String toString() {
+        return this.getClass().getName() + '\n'+ super.toString() + '\n' +
+                "motherboard='" + motherboard + '\'' +
+                ", CPU='" + CPU + '\'' +
+                ", GPU='" + GPU + '\'' +
+                ", RAM='" + RAM + '\'' +
+                ", HardDriveCapacity='" + HardDriveCapacity + '\'' +
+                '}';
     }
 }

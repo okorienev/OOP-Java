@@ -61,4 +61,13 @@ public class CommunicationProvider extends ElectricalAppliance {
     public void setWireless(boolean wireless) {
         isWireless = wireless;
     }
+
+    @Override
+    public String toString() {
+        return  this.getClass().getName() + '\n' + super.toString() + '\n' +
+                "lineType='" + lineType + '\'' +
+                ", inputsNumber=" + inputsNumber +
+                ", outputsNumber=" + outputsNumber +
+                ", isWireless=" + isWireless;
+    }
 }

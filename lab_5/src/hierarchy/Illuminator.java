@@ -14,4 +14,9 @@ public abstract class Illuminator extends ElectricalAppliance {
     public void setLuminousFlux(double luminousFlux) {
         this.luminousFlux = luminousFlux;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + '\n' + this.luminousFlux;
+    }
 }

@@ -10,4 +10,8 @@ public abstract class ElectricalApplianceCreator {
     }
 
     public abstract ElectricalAppliance create();
+
+    public ArrayDictionary getData() {
+        return data;
+    }
 }

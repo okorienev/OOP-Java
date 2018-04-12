@@ -78,5 +78,9 @@ public abstract class ElectricalAppliance {
         return String.format("Manufacturer: %s\nYear: %d\nPower: %s\nRadiation: %s\n",
                 manufacturer, yearOfIssue, power, radiation);
     }
+
+    public String shortenedRepresentation(){
+        return this.getClass().getName() +' ' + manufacturer +' '+ name +' ' + radiation + ' ' +power;
+    }
 }
 
