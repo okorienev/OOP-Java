@@ -25,6 +25,9 @@ public abstract class ElectricalAppliance {
         }
     }
 
+    /**
+     * method turning appliance on
+     */
     public void turnOn(){
         this.isPlugged = true;
     }
@@ -79,8 +82,12 @@ public abstract class ElectricalAppliance {
                 manufacturer, yearOfIssue, power, radiation);
     }
 
+    /**
+     * @return shortened string representation of object
+     */
     public String shortenedRepresentation(){
-        return this.getClass().getName() +' ' + manufacturer +' '+ name +' ' + radiation + ' ' +power;
+        return this.getClass().getName() +' ' + manufacturer +' '+ name +
+                " radiation: " + radiation + " power: " +power + ' ' + "plugged: " + isPlugged;
     }
 }
 

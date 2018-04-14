@@ -4,8 +4,6 @@ package hierarchy;
  * @author Oleksandr Korienev
  * @see ElectricalAppliance
  * class for routers, phones and other devices connected to different networks
- * pay to attention to lineTypes array to see the meaning of lineType number
- *
  */
 
 public class CommunicationProvider extends ElectricalAppliance {
