@@ -2,9 +2,13 @@ package hierarchy;
 
 import java.util.Comparator;
 
-public class SortByPower implements Comparator<ElectricalAppliance>{
+/**
+ * changed to Comparator.comparing in sorting method
+ */
+@Deprecated
+public class SortByPower implements Comparator<hierarchy.ElectricalAppliance>{
     @Override
-    public int compare(ElectricalAppliance o1, ElectricalAppliance o2) {
+    public int compare(hierarchy.ElectricalAppliance o1, hierarchy.ElectricalAppliance o2) {
         return Double.compare(o1.getPower(), o2.getPower());
     }
 }
