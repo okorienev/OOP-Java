@@ -2,6 +2,7 @@ import hierarchy.ElectricalAppliance;
 import hierarchy.SortByPower;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Random;
 
 public class Flat {
@@ -16,7 +17,7 @@ public class Flat {
     }
 
     public void sortByPower(){
-        Arrays.sort(electricalAppliances, new SortByPower());
+        Arrays.sort(electricalAppliances, Comparator.comparing(ElectricalAppliance::getPower));
     }
 
     public ElectricalAppliance[] getInRadiationRange(int start, int end){

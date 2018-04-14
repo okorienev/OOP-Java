@@ -2,7 +2,6 @@ package parsing;
 
 import Dictionary.ArrayDictionary;
 
-import java.awt.image.AreaAveragingScaleFilter;
 import java.io.*;
 
 public abstract class JSONParser {

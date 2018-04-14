@@ -1,7 +1,5 @@
 package hierarchy;
 
-import hierarchy.Computer;
-
 abstract class PortableComputer extends Computer {
     private String DisplayType;
     private double DisplaySize;

@@ -1,7 +1,5 @@
 package hierarchy;
 
-import hierarchy.Illuminator;
-
 public class MobileIlluninator extends Illuminator {
     private String binding;
 

@@ -1,16 +1,16 @@
 import Dictionary.ArrayDictionary;
-import parsing.JSONParser;
+import Factory.ElectricalApplianceCreator;
+import Factory.FactoryMethod;
+import hierarchy.ElectricalAppliance;
 
-import static parsing.JSONParser.*;
+import static parsing.JSONParser.parseFile;
 
 public class Main {
 
     public static void main(String[] args) {
         ArrayDictionary<Object> a = parseFile("data_json/meizu_m5_c.json");
-        System.out.println(a);
-        System.out.println(a.get("manufacturer"));
-        System.out.println(a.get("yearOfIssue"));
-        System.out.println(a.get("power"));
-        System.out.println(a.get("non-existing"));
+        FactoryMethod factoryMethod = new FactoryMethod();
+        ElectricalApplianceCreator creator = factoryMethod.creator(a);
+        ElectricalAppliance electricalAppliance = creator.create();
     }
 }
