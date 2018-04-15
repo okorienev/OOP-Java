@@ -2,7 +2,15 @@ package Factory;
 
 import Dictionary.ArrayDictionary;
 
+/**
+ * Factory method for hierarchy package
+ */
 public class FactoryMethod {
+    /**
+     * checking for parameters needed for ElectricalAppliance
+     * @param parsedData dictionary with data about appliances
+     * @return true if all parameters are present in dictionary and false otherwise
+     */
     private boolean ElectricalApplianceParametersCorrect(ArrayDictionary parsedData){
         return parsedData.get("manufacturer") != null &
                 parsedData.get("name") != null &
@@ -11,6 +19,13 @@ public class FactoryMethod {
                 parsedData.get("yearOfIssue") !=null;
     }
 
+    /**
+     * Each hierarchy class has unique parameters, method is searching in the inheritance graph tree, trying to get one of
+     * class parameter (custom Dictionary returns null if parameter is not present in it)
+     * @param parsedData dictionary with data about appliance
+     * @return concrete creator depending on search results
+     * @throws IllegalArgumentException if given dictionary suits no appliance from hierarchy
+     */
     public ElectricalApplianceCreator creator(ArrayDictionary parsedData) throws IllegalArgumentException{
         ElectricalApplianceCreator electricalApplianceCreator;
         if (ElectricalApplianceParametersCorrect(parsedData)){

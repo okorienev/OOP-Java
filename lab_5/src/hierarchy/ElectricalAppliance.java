@@ -1,9 +1,5 @@
 package hierarchy;
 
-/**
- * abstract class representing Electrical Appliance
- * @author Oleksandr Korienev
- */
 
 public abstract class ElectricalAppliance {
     private int yearOfIssue;

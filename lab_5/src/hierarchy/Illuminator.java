@@ -1,9 +1,5 @@
 package hierarchy;
 
-/**
- *
- */
-
 public abstract class Illuminator extends ElectricalAppliance {
     private double luminousFlux;
 

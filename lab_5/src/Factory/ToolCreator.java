@@ -4,6 +4,10 @@ import Dictionary.ArrayDictionary;
 import hierarchy.ElectricalAppliance;
 import hierarchy.Tool;
 
+/**
+ * concrete creator
+ * @see FactoryMethod
+ */
 public class ToolCreator extends ElectricalApplianceCreator {
     public ToolCreator(ArrayDictionary data) {
         super(data);

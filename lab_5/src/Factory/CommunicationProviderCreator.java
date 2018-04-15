@@ -4,6 +4,10 @@ import Dictionary.ArrayDictionary;
 import hierarchy.CommunicationProvider;
 import hierarchy.ElectricalAppliance;
 
+/**
+ * concrete creator
+ * @see FactoryMethod
+ */
 public class CommunicationProviderCreator extends ElectricalApplianceCreator {
     public CommunicationProviderCreator(ArrayDictionary data) {
         super(data);

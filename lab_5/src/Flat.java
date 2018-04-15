@@ -4,6 +4,9 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Random;
 
+/**
+ * Main class for the task, represent electrical network in flat
+ */
 public class Flat {
     private ElectricalAppliance[] electricalAppliances;
 

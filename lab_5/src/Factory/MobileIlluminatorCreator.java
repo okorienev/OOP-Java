@@ -4,6 +4,10 @@ import Dictionary.ArrayDictionary;
 import hierarchy.ElectricalAppliance;
 import hierarchy.MobileIlluninator;
 
+/**
+ * concrete creator
+ * @see FactoryMethod
+ */
 public class MobileIlluminatorCreator extends ElectricalApplianceCreator {
     public MobileIlluminatorCreator(ArrayDictionary data) {
         super(data);

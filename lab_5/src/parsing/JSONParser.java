@@ -4,8 +4,16 @@ import Dictionary.ArrayDictionary;
 
 import java.io.*;
 
+/**
+ * class simple JSON parsing
+ */
 public abstract class JSONParser {
 
+    /**
+     * @param path to json file
+     * @return ArrayDictionary with key(String) and value(String) from json
+     * has big problems when parsing anything with commas, colons and quotes
+     */
     public static ArrayDictionary parseFile(String path){
         ArrayDictionary<String> result = new ArrayDictionary<>();
         String tmpFileString;
@@ -36,6 +44,12 @@ public abstract class JSONParser {
         return result;
     }
 
+    /**
+     * parsing each file from directory with parseFile()
+     * @param path to directory with json files
+     * @return array of ArrayDictionary instances
+     * @see JSONParser#parseFile(String)
+     */
     public static ArrayDictionary[] parseDirectory(String path){
         File file = new File(path);
         File[] files = file.listFiles();

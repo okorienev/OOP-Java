@@ -4,6 +4,10 @@ import Dictionary.ArrayDictionary;
 import hierarchy.ElectricalAppliance;
 import hierarchy.TabletPC;
 
+/**
+ * concrete creator
+ * @see FactoryMethod
+ */
 public class TabletPCCreator extends ElectricalApplianceCreator {
     public TabletPCCreator(ArrayDictionary data) {
         super(data);
