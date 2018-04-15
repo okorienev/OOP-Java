@@ -1,5 +1,4 @@
 import hierarchy.ElectricalAppliance;
-import hierarchy.SortByPower;
 
 import java.util.Arrays;
 import java.util.Comparator;
