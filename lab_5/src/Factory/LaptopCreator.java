@@ -11,14 +11,14 @@ public class LaptopCreator extends ElectricalApplianceCreator {
 
     @Override
     public ElectricalAppliance create() {
-        ArrayDictionary data = super.getData();
+        ArrayDictionary<String> data = super.getData();
         return new Laptop(
-                (String)data.get("keyboardType"),
-                (boolean)data.get("ScreenIsTouch"),
-                (String)data.get("manufacturer"),
-                (String)data.get("name"),
-                (double)data.get("power"),
-                (double)data.get("radiation"),
-                (int)data.get("yearOfIssue"));
+                data.get("keyboardType"),
+                Boolean.parseBoolean(data.get("ScreenIsTouch")),
+                data.get("manufacturer"),
+                data.get("name"),
+                Double.parseDouble(data.get("power")),
+                Double.parseDouble(data.get("radiation")),
+                Integer.parseInt(data.get("yearOfIssue")));
     }
 }

@@ -11,17 +11,17 @@ public class CommunicationProviderCreator extends ElectricalApplianceCreator {
 
     @Override
     public ElectricalAppliance create() {
-        ArrayDictionary data = super.getData();
+        ArrayDictionary<String> data = super.getData();
         return new CommunicationProvider(
-                (String)data.get("lineType"),
-                (int)data.get("inputsNumber"),
-                (int)data.get("outputsNumber"),
-                (boolean)data.get("isWireless"),
-                (String)data.get("manufacturer"),
-                (String)data.get("name"),
-                (double)data.get("power"),
-                (double)data.get("radiation"),
-                (int)data.get("yearOfIssue")
+                data.get("lineType"),
+                Integer.parseInt(data.get("inputsNumber")),
+                Integer.parseInt(data.get("outputsNumber")),
+                Boolean.parseBoolean(data.get("isWireless")),
+                data.get("manufacturer"),
+                data.get("name"),
+                Double.parseDouble(data.get("power")),
+                Double.parseDouble(data.get("radiation")),
+                Integer.parseInt(data.get("yearOfIssue"))
         );
     }
 }

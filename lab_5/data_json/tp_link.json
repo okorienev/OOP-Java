@@ -1,0 +1,11 @@
+{
+ "lineType": "RG-45",
+ "inputsNumber": 1,
+ "outputsNumber": 4,
+ "isWireless": true,
+ "manufacturer": "TP-LINK",
+ "name": "TL-WR841N",
+ "power": 13,
+ "radiation": 100,
+ "yearOfIssue": 2017
+}

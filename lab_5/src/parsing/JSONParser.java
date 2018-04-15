@@ -7,7 +7,7 @@ import java.io.*;
 public abstract class JSONParser {
 
     public static ArrayDictionary parseFile(String path){
-        ArrayDictionary result = new ArrayDictionary();
+        ArrayDictionary<String> result = new ArrayDictionary<>();
         String tmpFileString;
         String[] tmpStringParts;
         FileReader fileReader;
@@ -35,6 +35,7 @@ public abstract class JSONParser {
         }
         return result;
     }
+
     public static ArrayDictionary[] parseDirectory(String path){
         File file = new File(path);
         File[] files = file.listFiles();
