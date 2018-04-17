@@ -15,7 +15,7 @@ public class MyList<E> implements List<E> {
     }
 
     public MyList(){
-        
+
     }
 
 
@@ -73,8 +73,11 @@ public class MyList<E> implements List<E> {
     }
 
     @Override
-    public boolean addAll(Collection c) {
-        return false;
+    public boolean addAll(Collection<? extends E> c) {
+        for (E o: c) {
+            add(o);
+        }
+        return true;
     }
 
     @Override
@@ -93,12 +96,12 @@ public class MyList<E> implements List<E> {
     }
 
     @Override
-    public E set(int index, Object element) {
+    public E set(int index, E element) {
         return null;
     }
 
     @Override
-    public void add(int index, Object element) {
+    public void add(int index, E element) {
 
     }
 
@@ -119,7 +122,7 @@ public class MyList<E> implements List<E> {
 
     @Override
     public ListIterator<E> listIterator() {
-        return null;
+        return new MyIterator<E>(head);
     }
 
     @Override
