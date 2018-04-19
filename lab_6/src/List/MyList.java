@@ -7,6 +7,7 @@ public class MyList<E> implements List<E> {
     private Node<E> head;
     private Node<E> tail;
 
+
     public MyList(E data) {
         Node<E> tmp = new Node<>(data);
         this.head = tmp;
@@ -14,8 +15,9 @@ public class MyList<E> implements List<E> {
         size = 1;
     }
 
-    public MyList(){
 
+    public MyList(Collection<? extends E> collection){
+        this.addAll(collection);
     }
 
 
@@ -43,9 +45,10 @@ public class MyList<E> implements List<E> {
         return null;
     }
 
+
     @Override
     public Object[] toArray() {
-        return new Object[0];
+        return new Object[size];
     }
 
     @Override
@@ -87,22 +90,54 @@ public class MyList<E> implements List<E> {
 
     @Override
     public void clear() {
-
+        head = null;
+        tail = null;
+        size = 0;
     }
 
     @Override
     public E get(int index) {
-        return null;
+        if (index >= size){
+            throw new IndexOutOfBoundsException();
+        }else {
+            Node<E> tmp = head;
+            for (int i = 0; i < index; i++) {
+                tmp = tmp.getNext();
+            }
+            return tmp.getData();
+        }
     }
 
     @Override
     public E set(int index, E element) {
-        return null;
+        if (index >= size){
+            throw new IndexOutOfBoundsException();
+        }else {
+            Node<E> tmp = head;
+            E tmpData;
+            for (int i = 0; i < index; i++) {
+                tmp = tmp.getNext();
+            }
+            tmpData = tmp.getData();
+            tmp.setData(element);
+            return tmpData;
+        }
     }
 
     @Override
     public void add(int index, E element) {
-
+        if (index >= size) {
+            throw new IndexOutOfBoundsException();
+        } else {
+            Node<E> tmp = head;
+            Node<E> tmp2 = new Node<>(element);
+            for (int i = 0; i < index; i++) {
+                tmp = tmp.getNext();
+            }
+            tmp2.setNext(tmp);
+            tmp2.setPrev(tmp.getPrev());
+            tmp.setPrev(tmp2);
+        }
     }
 
     @Override
@@ -122,12 +157,20 @@ public class MyList<E> implements List<E> {
 
     @Override
     public ListIterator<E> listIterator() {
-        return new MyIterator<E>(head);
+        return new MyIterator<>(head);
     }
 
     @Override
     public ListIterator<E> listIterator(int index) {
-        return null;
+        if (index >= size) {
+            throw new IndexOutOfBoundsException();
+        } else {
+            Node<E> tmp = head;
+            for (int i = 0; i < index; i++) {
+                tmp = tmp.getNext();
+            }
+            return new MyIterator<E>(tmp);
+        }
     }
 
     @Override
