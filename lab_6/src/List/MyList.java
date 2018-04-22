@@ -41,12 +41,17 @@ public class MyList<E> implements List<E> {
 
     @Override
     public boolean contains(Object o) {
+        for (E e : this) {
+            if (e == o){
+                return true;
+            }
+        }
         return false;
     }
 
     @Override
     public Iterator<E> iterator() {
-        return null;
+        return listIterator();
     }
 
 
@@ -89,7 +94,10 @@ public class MyList<E> implements List<E> {
 
     @Override
     public boolean addAll(int index, Collection c) {
-        return false;
+        for (Object o : c) {
+            add(index++, (E)o);
+        }
+        return true;
     }
 
     @Override
@@ -194,7 +202,11 @@ public class MyList<E> implements List<E> {
 
     @Override
     public boolean containsAll(Collection c) {
-        return false;
+        for (Object o : c) {
+            if (!this.contains(o)){
+                return false;
+            }
+        }return true;
     }
 
     @Override
