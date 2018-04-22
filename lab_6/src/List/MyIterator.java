@@ -8,7 +8,8 @@ class MyIterator<E> implements ListIterator<E> {
     private int currentIndex = 0;
 
     public MyIterator(Node<E> node){
-        current = node;
+        current = new Node<>(node.getData());
+        current.setNext(node);
     }
 
     @Override

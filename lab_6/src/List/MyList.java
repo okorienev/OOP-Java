@@ -20,6 +20,10 @@ public class MyList<E> implements List<E> {
         this.addAll(collection);
     }
 
+    public MyList() {
+
+    }
+
 
     @Override
     public int size() {
