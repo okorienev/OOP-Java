@@ -8,6 +8,10 @@ public class MyList<E> implements List<E> {
     private Node<E> tail;
 
 
+    /**
+     * Constructs list from single item
+     * @param data instance of type parameter class
+     */
     public MyList(E data) {
         Node<E> tmp = new Node<>(data);
         this.head = tmp;
@@ -15,20 +19,39 @@ public class MyList<E> implements List<E> {
         size = 1;
     }
 
-
+    /**
+     * constructs list from collection
+     * @param collection with type inherited from list type parameter
+     */
     public MyList(Collection<? extends E> collection){
         this.addAll(collection);
     }
 
+    /**
+     * constructs empty list
+     */
     public MyList() {
 
     }
 
+//    Deprecated method. Problems with listIterator. If items were added/deleted by listIterator methods then the size
+//    will be displayed incorrectly
+//    @Override
+//    public int size() {
+//        return size;
+//    }
 
     @Override
     public int size() {
+        Iterator iterator = iterator();
+        int size = 0;
+        while (iterator.hasNext()){
+            iterator.next();
+            size++;
+        }
         return size;
     }
+
 
     @Override
     public boolean isEmpty() {
@@ -51,6 +74,11 @@ public class MyList<E> implements List<E> {
         return new Object[size];
     }
 
+    /**
+     *
+     * @param o instance of List type parameter
+     * @return true if list was modified
+     */
     @Override
     public boolean add(E o){
         if (o == null){
@@ -72,9 +100,13 @@ public class MyList<E> implements List<E> {
 
     @Override
     public boolean remove(Object o) {
-        return false;
+        throw new UnsupportedOperationException();
     }
 
+    /**
+     * @param c iterable collection
+     * @return true if list was changed
+     */
     @Override
     public boolean addAll(Collection<? extends E> c) {
         for (E o: c) {
@@ -83,12 +115,13 @@ public class MyList<E> implements List<E> {
         return true;
     }
 
+    /**
+     * Unsupported operation
+     * @throws UnsupportedOperationException on any call
+     */
     @Override
     public boolean addAll(int index, Collection c) {
-        for (Object o : c) {
-            add(index++, (E)o);
-        }
-        return true;
+        throw new UnsupportedOperationException();
     }
 
     @Override
