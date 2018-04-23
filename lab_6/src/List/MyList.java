@@ -1,9 +1,10 @@
 package List;
 
 import java.util.*;
+import java.util.function.Supplier;
 
 public class MyList<E> implements List<E> {
-    private int size = 0;
+//    private int size = 0;
     private Node<E> head;
     private Node<E> tail;
 
@@ -16,7 +17,7 @@ public class MyList<E> implements List<E> {
         Node<E> tmp = new Node<>(data);
         this.head = tmp;
         this.tail = tmp;
-        size = 1;
+//        size = 1;
     }
 
     /**
@@ -43,6 +44,9 @@ public class MyList<E> implements List<E> {
 
     @Override
     public int size() {
+        if (isEmpty()) {
+            return 0;
+        }
         Iterator iterator = iterator();
         int size = 0;
         while (iterator.hasNext()){
@@ -55,7 +59,7 @@ public class MyList<E> implements List<E> {
 
     @Override
     public boolean isEmpty() {
-        return size == 0;
+        return head == null;
     }
 
     @Override
@@ -71,7 +75,7 @@ public class MyList<E> implements List<E> {
 
     @Override
     public Object[] toArray() {
-        return new Object[size];
+        return new Object[size()];
     }
 
     /**
@@ -88,12 +92,12 @@ public class MyList<E> implements List<E> {
         if (head == null){
             head = tmp;
             tail = tmp;
-            size = 1;
+//            size = 1;
         }else {
             tail.setNext(tmp);
             tmp.setPrev(tail);
             tail = tmp;
-            size ++;
+//            size ++;
         }
         return true;
     }
@@ -124,16 +128,19 @@ public class MyList<E> implements List<E> {
         throw new UnsupportedOperationException();
     }
 
+    /**
+     * clears the list
+     */
     @Override
     public void clear() {
         head = null;
         tail = null;
-        size = 0;
+//        size = 0;
     }
 
     @Override
     public E get(int index) {
-        if (index >= size){
+        if (index >= size() || index < 0){
             throw new IndexOutOfBoundsException();
         }else {
             Node<E> tmp = head;
@@ -146,7 +153,7 @@ public class MyList<E> implements List<E> {
 
     @Override
     public E set(int index, E element) {
-        if (index >= size){
+        if (index >= size() || index < 0){
             throw new IndexOutOfBoundsException();
         }else {
             Node<E> tmp = head;
@@ -162,7 +169,7 @@ public class MyList<E> implements List<E> {
 
     @Override
     public void add(int index, E element) {
-        if (index >= size) {
+        if (index >= size() || index < 0) {
             throw new IndexOutOfBoundsException();
         } else {
             Node<E> tmp = head;
@@ -178,17 +185,43 @@ public class MyList<E> implements List<E> {
 
     @Override
     public E remove(int index) {
-        return null;
+        if (index >= size() || index < 0){
+            throw new IndexOutOfBoundsException();
+        }
+        Node<E> tmp = head;
+        E tmpData = null;
+        for (int i = 0; i < index; i++) {
+            tmp = tmp.getNext();
+        }
+        tmpData = tmp.getData();
+        tmp.getPrev().setNext(tmp.getNext());
+        tmp.getNext().setPrev(tmp.getPrev());
+        return tmpData;
     }
 
     @Override
     public int indexOf(Object o) {
-        return 0;
+        int index = 0;
+        for (E e : this) {
+            if (o.equals(e)){
+                return index;
+            }
+            index++;
+        }
+        return -1;
     }
 
     @Override
     public int lastIndexOf(Object o) {
-        return 0;
+        int lastIndex = -1;
+        int index = 0;
+        for (E e : this) {
+            if (o.equals(e)){
+                lastIndex = index;
+            }
+            index++;
+        }
+        return lastIndex;
     }
 
     @Override
@@ -198,7 +231,7 @@ public class MyList<E> implements List<E> {
 
     @Override
     public ListIterator<E> listIterator(int index) {
-        if (index >= size) {
+        if (index >= size() || index < 0) {
             throw new IndexOutOfBoundsException();
         } else {
             Node<E> tmp = head;
@@ -211,17 +244,24 @@ public class MyList<E> implements List<E> {
 
     @Override
     public List<E> subList(int fromIndex, int toIndex) {
-        return null;
+        if (fromIndex >= toIndex || toIndex > size() || fromIndex < 0 || toIndex < 0){
+            throw new IndexOutOfBoundsException();
+        }
+        MyList<E> result = new MyList<E>();
+        for (int i = fromIndex; i < toIndex; i++) {
+            result.add(get(i));
+        }
+        return result;
     }
 
     @Override
     public boolean retainAll(Collection c) {
-        return false;
+        throw new  UnsupportedOperationException();
     }
 
     @Override
     public boolean removeAll(Collection c) {
-        return false;
+        throw new  UnsupportedOperationException();
     }
 
     @Override
@@ -234,8 +274,20 @@ public class MyList<E> implements List<E> {
     }
 
     @Override
-    public Object[] toArray(Object[] a) {
-        return new Object[0];
-    }
+    public <T> T[] toArray(T[] a) {
+        if (a.length < size())
+            a = (T[])java.lang.reflect.Array.newInstance(
+                    a.getClass().getComponentType(), size());
+        int i = 0;
+        Object[] result = a;
+        for (Node<E> x = head; x != null; x = x.getNext())
+            result[i++] = x.getData();
+
+        if (a.length > size())
+            a[size()] = null;
+
+        return a;
+        }
 }
+
 
