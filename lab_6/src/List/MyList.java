@@ -32,21 +32,12 @@ public class MyList<E> implements List<E> {
 
     @Override
     public boolean isEmpty() {
-        if (size == 0){
-            return true;
-        }else {
-            return true;
-        }
+        return size == 0;
     }
 
     @Override
     public boolean contains(Object o) {
-        for (E e : this) {
-            if (e == o){
-                return true;
-            }
-        }
-        return false;
+        return indexOf(o) != -1;
     }
 
     @Override
