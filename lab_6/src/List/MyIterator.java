@@ -4,7 +4,7 @@ import java.util.ListIterator;
 import java.util.NoSuchElementException;
 
 class MyIterator<E> implements ListIterator<E> {
-    private Node<E> current = null;
+    private Node<E> current;
     private int currentIndex = 0;
 
     public MyIterator(Node<E> node){
@@ -68,8 +68,10 @@ class MyIterator<E> implements ListIterator<E> {
 
     @Override
     public void add(E o) {
-            Node<E> tmpNode = new Node<>((E)o);
+            Node<E> tmpNode = new Node<>(o);
             tmpNode.setPrev(current.getPrev());
-            tmpNode.setNext(current.getNext());
+            tmpNode.setNext(current);
+            current.getPrev().setNext(tmpNode);
+            current.setPrev(tmpNode);
     }
 }

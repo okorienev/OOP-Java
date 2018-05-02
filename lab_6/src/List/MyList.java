@@ -1,7 +1,7 @@
 package List;
 
+
 import java.util.*;
-import java.util.function.Supplier;
 
 public class MyList<E> implements List<E> {
 //    private int size = 0;
@@ -80,6 +80,7 @@ public class MyList<E> implements List<E> {
      *
      * @return array containing list items in correct order
      */
+    @SuppressWarnings("unchecked")
     @Override
     public E[] toArray() {
         Object[] result = new Object[size()];
@@ -114,9 +115,20 @@ public class MyList<E> implements List<E> {
         return true;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public boolean remove(Object o) {
-        throw new UnsupportedOperationException();
+        E toRemove = (E) o;
+        int index = 0;
+        for (E e : this) {
+            if (e.equals(toRemove)){
+                this.remove(index);
+                return true;
+            }else {
+                index++;
+            }
+        }
+        return false;
     }
 
     /**
@@ -131,13 +143,14 @@ public class MyList<E> implements List<E> {
         return true;
     }
 
-    /**
-     * Unsupported operation
-     * @throws UnsupportedOperationException on any call
-     */
+
+    @SuppressWarnings("unchecked")
     @Override
     public boolean addAll(int index, Collection c) {
-        throw new UnsupportedOperationException();
+        for (Object o: c){
+            this.add(index++, (E)o);
+        }
+        return true;
     }
 
     /**
@@ -268,12 +281,25 @@ public class MyList<E> implements List<E> {
 
     @Override
     public boolean retainAll(Collection c) {
-        throw new  UnsupportedOperationException();
+        boolean flag = false;
+        for (E e : this) {
+            if (!c.contains(e)){
+                this.remove(e);
+                flag = true;
+            }
+        }
+        return flag;
     }
 
     @Override
     public boolean removeAll(Collection c) {
-        throw new  UnsupportedOperationException();
+        boolean flag = false;
+        for (Object o : c) {
+            if(this.remove(o)){
+                flag = true;
+            }
+        }
+        return flag;
     }
 
     @Override
@@ -285,6 +311,7 @@ public class MyList<E> implements List<E> {
         }return true;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public <T> T[] toArray(T[] a) {
         if (a.length < size())

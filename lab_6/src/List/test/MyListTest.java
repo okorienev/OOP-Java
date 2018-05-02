@@ -1,5 +1,6 @@
-package List;
+package List.test;
 
+import List.MyList;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -7,7 +8,11 @@ import java.util.ListIterator;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * list tests according to jdk List<E>documentation
+ */
 class MyListTest {
+
     @Test
     void listCreationTest(){
         Integer[] tmp = new Integer[]{11, 12, 43, 27, 18, 6};
