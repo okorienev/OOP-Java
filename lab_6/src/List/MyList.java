@@ -43,7 +43,7 @@ public class MyList<E> implements List<E> {
 //    }
 
     /**
-     * works slow enough
+     * works slow because of iterating list
      * @return list size
      */
     @Override
@@ -66,6 +66,9 @@ public class MyList<E> implements List<E> {
         return head == null;
     }
 
+    /**
+     * @return Does not throw ClassCastException
+     */
     @Override
     public boolean contains(Object o) {
         return indexOf(o) != -1;
@@ -192,21 +195,34 @@ public class MyList<E> implements List<E> {
         }
     }
 
+
     @Override
     public void add(int index, E element) {
-        if (index >= size() || index < 0) {
-            throw new IndexOutOfBoundsException();
-        } else {
-            Node<E> tmp = head;
-            Node<E> tmp2 = new Node<>(element);
-            for (int i = 0; i < index; i++) {
-                tmp = tmp.getNext();
-            }
-            tmp2.setNext(tmp);
-            tmp2.setPrev(tmp.getPrev());
-            tmp.setPrev(tmp2);
+        if (element == null) {
+            throw new NullPointerException();
         }
-    }
+        if (index >= size() || index < 0) { // index bounds
+            throw new IndexOutOfBoundsException();
+        }
+        if(index == size() - 1) {  // right edge of a list
+            this.add(element);
+        }
+        Node<E> NodeToAdd = head;
+        Node<E> NodeNextToAdded = new Node<>(element);
+        for (int i = 0; i < index; i++) { // get needed node
+            NodeToAdd = NodeToAdd.getNext();
+        }
+        if (NodeToAdd.getPrev() != null) {
+            NodeToAdd.getPrev().setNext(NodeNextToAdded);
+            NodeNextToAdded.setPrev(NodeToAdd.getPrev());
+        }else{ //left edge of a list
+            head = NodeNextToAdded;
+            NodeNextToAdded.setNext(NodeToAdd);
+        }
+        NodeNextToAdded.setNext(NodeToAdd);
+        NodeToAdd.setPrev(NodeNextToAdded);
+        }
+
 
     @Override
     public E remove(int index) {
@@ -226,9 +242,10 @@ public class MyList<E> implements List<E> {
 
     @Override
     public int indexOf(Object o) {
+        E tmp = (E) o;
         int index = 0;
         for (E e : this) {
-            if (o.equals(e)){
+            if (tmp.equals(e)){
                 return index;
             }
             index++;

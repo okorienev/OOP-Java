@@ -54,11 +54,21 @@ class MyIterator<E> implements ListIterator<E> {
         return currentIndex - 1;
     }
 
+
     @Override
     public void remove() {
-        current.getPrev().setNext(current.getNext());
-        current.getNext().setPrev(current.getPrev());
-
+        if (current.getPrev()!= null) {
+            if (current.getPrev().getNext() == current.getNext()){
+                throw new IllegalStateException();
+            }
+            current.getPrev().setNext(current.getNext());
+        }
+        if (current.getNext() != null){
+             if(current.getNext().getPrev() == current.getPrev()){
+                 throw  new IllegalStateException();
+             }
+            current.getNext().setPrev(current.getPrev());
+        }
     }
 
     @Override
