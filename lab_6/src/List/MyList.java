@@ -242,10 +242,15 @@ public class MyList<E> implements List<E> {
 
     @Override
     public int indexOf(Object o) {
-        E tmp = (E) o;
+        if (isEmpty()) {
+            return -1;
+        }
+        if (!head.getData().getClass().isAssignableFrom(o.getClass())){
+            throw new ClassCastException();
+        }
         int index = 0;
         for (E e : this) {
-            if (tmp.equals(e)){
+            if (o.equals(e)){
                 return index;
             }
             index++;
