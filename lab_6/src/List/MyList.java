@@ -121,17 +121,12 @@ public class MyList<E> implements List<E> {
     @SuppressWarnings("unchecked")
     @Override
     public boolean remove(Object o) {
-        E toRemove = (E) o;
-        int index = 0;
-        for (E e : this) {
-            if (e.equals(toRemove)){
-                this.remove(index);
-                return true;
-            }else {
-                index++;
-            }
+        boolean flag = false;
+        while (indexOf(o)!= -1){
+            remove(indexOf(o));
+            flag = true;
         }
-        return false;
+        return flag;
     }
 
     /**
@@ -235,6 +230,16 @@ public class MyList<E> implements List<E> {
             tmp = tmp.getNext();
         }
         tmpData = tmp.getData();
+        if(index == 0){
+            head.getNext().setPrev(null);
+            head = head.getNext();
+            return tmpData;
+        }
+        if (index == size() - 1){
+            tail.getPrev().setNext(null);
+            tail = tail.getPrev();
+            return tmpData;
+        }
         tmp.getPrev().setNext(tmp.getNext());
         tmp.getNext().setPrev(tmp.getPrev());
         return tmpData;

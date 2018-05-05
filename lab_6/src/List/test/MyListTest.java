@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.List;
 import java.util.ListIterator;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -40,7 +41,7 @@ class MyListTest {
             assertFalse(list.contains(integersNoContain));
         }
         assertThrows(NullPointerException.class, ()->list.contains(null));
-//        assertThrows(ClassCastException.class, ()->list.contains("i_am_string_uncastable_to_int"));
+        assertThrows(ClassCastException.class, ()->list.contains("i_am_string_uncastable_to_int"));
     }
 
     @Test
@@ -64,18 +65,89 @@ class MyListTest {
         assertThrows(IndexOutOfBoundsException.class, ()->list.add(list.size(), 1));
         assertThrows(NullPointerException.class, ()->list.add(0, null));
         assertTrue(list.add(11));
-        assertThrows(NullPointerException.class, ()->list.add(null));
+       assertThrows(NullPointerException.class, ()->list.add(null));
         list.add(0, Integer.MIN_VALUE);
         assertTrue( list.get(0) == Integer.MIN_VALUE);
         list.add(list.size() - 1, Integer.MAX_VALUE);
         assertTrue(list.get(list.size() - 1) == Integer.MAX_VALUE);
-
     }
 
+    @Test
+    void setTest(){
+        MyList<Integer> list = getListCopy();
+        assertThrows(IndexOutOfBoundsException.class, ()->list.set(list.size(), 0));
+        assertThrows(IndexOutOfBoundsException.class, ()->list.set(-1, 0));
+        list.set(0, Integer.MIN_VALUE);
+        list.set(list.size() - 1, Integer.MAX_VALUE);
+        list.set(list.size()-2, 0); // magic numbers
+        assertTrue(list.get(0) == Integer.MIN_VALUE);
+        assertTrue(list.get(list.size() - 1) ==Integer.MAX_VALUE);
+        assertTrue(list.get(list.size() - 2) == 0); // magic numbers
+    }
 
+    @Test
+    void removeTest(){
+        MyList<Integer> list = getListCopy();
+        int tmp = list.size();
+        assertThrows(IndexOutOfBoundsException.class, ()->list.set(list.size(), 0));
+        assertThrows(IndexOutOfBoundsException.class, ()->list.set(-1, 0));
+        assertEquals(list.get(0), list.remove(0));
+        assertEquals(list.size(), --tmp);
+        assertEquals(list.get(list.size() - 1), list.remove(list.size() - 1));
+        assertEquals(list.size(), --tmp);
+//        list.add(Integer.MAX_VALUE);
+//        list.add(list.size()/2, Integer.MAX_VALUE);  test fails cause Java thinks integer was given instead of object
+//        list.remove((Number)Integer.MAX_VALUE);       and test expected method to behave with Integer like with Object
+//        assertFalse(list.contains(Integer.MAX_VALUE));  and not with int
+//        assertEquals(list.size(), tmp);
+        list.add(0, Integer.MIN_VALUE);
+        list.add(list.size()/2, Integer.MIN_VALUE);
+        list.remove(list.indexOf(Integer.MIN_VALUE));
+        list.remove(list.indexOf(Integer.MIN_VALUE));
+        assertFalse(list.contains(Integer.MIN_VALUE));
+        assertEquals(list.size(), tmp);
+    }
 
+    @Test
+    void removeObjectTest(){
+        String[] strings = {"str_1", "str_2", "str_3", "str_repeat", "str_4", "str_repeat"};
+        MyList<String> list = new MyList<>(Arrays.asList(strings));
+        for (String s : strings) {
+            assertTrue(list.contains(s));
+        }
+        list.remove("str_repeat");
+        assertFalse(list.contains("str_repeat"));
+    }
 
+    @Test
+    void addAllTest(){
+        MyList<Integer> list = getListCopy();
+        assertThrows(NullPointerException.class, ()->{
+            Integer[] integers = {null, null, null};
+            list.addAll(Arrays.asList(integers));
+        });
 
+        assertThrows(NullPointerException.class, ()->{
+            Integer[] integers = {null, null, null};
+            list.addAll(0, Arrays.asList(integers));
+        });
+
+        assertThrows(IndexOutOfBoundsException.class, ()->{
+            Integer[] integers = {1, 2, 3};
+            list.addAll(-1, Arrays.asList(integers));
+        });
+
+        assertThrows(IndexOutOfBoundsException.class, ()->{
+            Integer[] integers = {1, 2, 3};
+            list.addAll(list.size(), Arrays.asList(integers));
+        });
+
+        MyList<Integer> list2 = new MyList<Integer>(Arrays.asList(integersNoContains));
+        list.addAll(list2);
+        for (Integer integer : list2) {
+            assertTrue(list.contains(integer));
+        }
+    }
 
     @Test
     void listCreationTest(){
