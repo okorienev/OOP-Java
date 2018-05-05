@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.Iterator;
-import java.util.List;
 import java.util.ListIterator;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -25,7 +24,7 @@ class MyListTest {
 
     @Test
     void isEmptyTest(){
-        MyList<Integer> list = new MyList<>();
+        MyList<Integer> list = new MyList<>(); //IntelliJ says incompatible types but Java all is ok
         assertTrue(list.isEmpty());
         list.add(15);
         assertFalse(list.isEmpty());
@@ -42,6 +41,11 @@ class MyListTest {
         }
         assertThrows(NullPointerException.class, ()->list.contains(null));
         assertThrows(ClassCastException.class, ()->list.contains("i_am_string_uncastable_to_int"));
+        //indexation testing
+        list.add(0, Integer.MAX_VALUE);
+        list.add(Integer.MAX_VALUE);
+        assertTrue(list.indexOf(Integer.MAX_VALUE) == 0);
+        assertTrue(list.lastIndexOf(Integer.MAX_VALUE) == list.size() - 1);
     }
 
     @Test
@@ -150,6 +154,21 @@ class MyListTest {
     }
 
     @Test
+    void subListTest(){
+        MyList<Integer> list = getListCopy();
+        assertThrows(IndexOutOfBoundsException.class, ()->list.subList(-2, list.size()/2));
+        assertThrows(IndexOutOfBoundsException.class, ()->list.subList(0, list.size() + 1));
+        MyList<Integer> listSlice = list.subList(0, list.size());
+        assertEquals(listSlice.size(), list.size());
+        for (int i = 0; i < list.size(); i++) {
+            assertEquals(list.get(i), listSlice.get(i));
+        }
+        assertEquals(list.subList(0, 1).get(0), list.get(0));
+        assertEquals(list.subList(list.size()-1, list.size()).get(0), list.get(list.size()-1));
+    }
+
+    //some old tests, not structured but can be useful
+    @Test
     void listCreationTest(){
         Integer[] tmp = new Integer[]{11, 12, 43, 27, 18, 6};
         MyList<Integer> list = new MyList<>(Arrays.asList(tmp));
@@ -181,7 +200,7 @@ class MyListTest {
         assertTrue(listIterator.hasNext());
         listIterator.next();
         assertEquals(0, listIterator.previousIndex());
-        assertEquals(2, listIterator.nextIndex());
+        assertEquals(1, listIterator.nextIndex());
         listIterator.next();
         assertTrue(listIterator.hasPrevious());
 

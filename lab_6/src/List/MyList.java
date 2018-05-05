@@ -278,7 +278,7 @@ public class MyList<E> implements List<E> {
 
     @Override
     public ListIterator<E> listIterator() {
-        return new MyIterator<>(head);
+        return new MyIterator<>(head, 0);
     }
 
     @Override
@@ -290,12 +290,12 @@ public class MyList<E> implements List<E> {
             for (int i = 0; i < index; i++) {
                 tmp = tmp.getNext();
             }
-            return new MyIterator<E>(tmp);
+            return new MyIterator<E>(tmp, index);
         }
     }
 
     @Override
-    public List<E> subList(int fromIndex, int toIndex) {
+    public MyList<E> subList(int fromIndex, int toIndex) {
         if (fromIndex >= toIndex || toIndex > size() || fromIndex < 0 || toIndex < 0){
             throw new IndexOutOfBoundsException();
         }
