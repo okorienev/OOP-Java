@@ -7,7 +7,7 @@ class MyIterator<E> implements ListIterator<E> {
     private Node<E> current;
     private int currentIndex = 0;
 
-    public MyIterator(Node<E> node){
+    public MyIterator(Node<E> node, int index){
         current = new Node<>(node.getData());
         current.setNext(node);
     }
@@ -46,7 +46,7 @@ class MyIterator<E> implements ListIterator<E> {
 
     @Override
     public int nextIndex() {
-            return currentIndex + 1;
+            return currentIndex;
     }
 
     @Override
