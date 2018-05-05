@@ -62,13 +62,13 @@ class MyListTest {
     void addTest(){
         MyList<Integer> list = getListCopy();
         assertThrows(IndexOutOfBoundsException.class, ()->list.add(-1, 1));
-        assertThrows(IndexOutOfBoundsException.class, ()->list.add(list.size(), 1));
+        assertThrows(IndexOutOfBoundsException.class, ()->list.add(list.size() + 1, 1));
         assertThrows(NullPointerException.class, ()->list.add(0, null));
         assertTrue(list.add(11));
        assertThrows(NullPointerException.class, ()->list.add(null));
         list.add(0, Integer.MIN_VALUE);
         assertTrue( list.get(0) == Integer.MIN_VALUE);
-        list.add(list.size() - 1, Integer.MAX_VALUE);
+        list.add(list.size(), Integer.MAX_VALUE);
         assertTrue(list.get(list.size() - 1) == Integer.MAX_VALUE);
     }
 
@@ -110,13 +110,13 @@ class MyListTest {
 
     @Test
     void removeObjectTest(){
-        String[] strings = {"str_1", "str_2", "str_3", "str_repeat", "str_4", "str_repeat"};
+        String[] strings = {"str_1", "str_2", "str_3", "str_delete", "str_4"};
         MyList<String> list = new MyList<>(Arrays.asList(strings));
         for (String s : strings) {
             assertTrue(list.contains(s));
         }
-        list.remove("str_repeat");
-        assertFalse(list.contains("str_repeat"));
+        list.remove("str_delete");
+        assertFalse(list.contains("str_delete"));
     }
 
     @Test
@@ -139,7 +139,7 @@ class MyListTest {
 
         assertThrows(IndexOutOfBoundsException.class, ()->{
             Integer[] integers = {1, 2, 3};
-            list.addAll(list.size(), Arrays.asList(integers));
+            list.addAll(list.size() + 1, Arrays.asList(integers));
         });
 
         MyList<Integer> list2 = new MyList<Integer>(Arrays.asList(integersNoContains));

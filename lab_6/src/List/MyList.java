@@ -122,7 +122,7 @@ public class MyList<E> implements List<E> {
     @Override
     public boolean remove(Object o) {
         boolean flag = false;
-        while (indexOf(o)!= -1){
+        if (indexOf(o)!= -1){
             remove(indexOf(o));
             flag = true;
         }
@@ -196,10 +196,10 @@ public class MyList<E> implements List<E> {
         if (element == null) {
             throw new NullPointerException();
         }
-        if (index >= size() || index < 0) { // index bounds
+        if (index > size() || index < 0) { // index bounds
             throw new IndexOutOfBoundsException();
         }
-        if(index == size() - 1) {  // right edge of a list
+        if(index == size()) {  // right edge of a list
             this.add(element);
         }
         Node<E> NodeToAdd = head;
