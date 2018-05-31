@@ -1,0 +1,29 @@
+<ElectricalAppliance>
+<yearOfIssue>2017</yearOfIssue>
+<manufacturer>Company inc.</manufacturer>
+<name>Appliance name</name>
+<power>123.0</power>
+<radiation>180.0</radiation>
+<isPlugged>false</isPlugged>
+</ElectricalAppliance>---------<ElectricalAppliance>
+<yearOfIssue>1901</yearOfIssue>
+<manufacturer>manufacturer</manufacturer>
+<name>DELUX</name>
+<power>123.0</power>
+<radiation>35.0</radiation>
+<isPlugged>false</isPlugged>
+</ElectricalAppliance>---------<ElectricalAppliance>
+<yearOfIssue>33</yearOfIssue>
+<manufacturer>Uknown</manufacturer>
+<name>Deadly artifact</name>
+<power>1.7976931348623157E308</power>
+<radiation>1.7976931348623157E308</radiation>
+<isPlugged>false</isPlugged>
+</ElectricalAppliance>---------<ElectricalAppliance>
+<yearOfIssue>33</yearOfIssue>
+<manufacturer>Uknown</manufacturer>
+<name>Lifefull artifact</name>
+<power>1.7976931348623157E308</power>
+<radiation>1.7976931348623157E308</radiation>
+<isPlugged>false</isPlugged>
+</ElectricalAppliance>---------

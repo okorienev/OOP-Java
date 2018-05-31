@@ -7,6 +7,7 @@ public class HouseholdAppliance extends ElectricalAppliance implements Serializa
 
     public HouseholdAppliance(String function,
                               String manufacturer, String name, double power, double radiation, int yearOfIssue) {
+        super(yearOfIssue, manufacturer, name, power, radiation);
         this.function = function;
         this.setManufacturer(manufacturer);
         this.setName(name);
@@ -15,8 +16,6 @@ public class HouseholdAppliance extends ElectricalAppliance implements Serializa
         this.setYearOfIssue(yearOfIssue);
     }
 
-    public HouseholdAppliance() {
-    }
 
     public String getFunction() {
         return function;
@@ -26,15 +25,6 @@ public class HouseholdAppliance extends ElectricalAppliance implements Serializa
         this.function = function;
     }
 
-    @Override
-    public String representAsText() {
-        return null;
-    }
-
-    @Override
-    public ElectricalAppliance readFromText(String s) {
-        return null;
-    }
 
     @Override
     public String toString() {

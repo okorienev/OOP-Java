@@ -7,6 +7,7 @@ public class FixedIlluminator extends Illuminator implements Serializable {
 
     public FixedIlluminator(int lampsAmount, double luminousFlux,
                             String manufacturer, String name, double power, double radiation, int yearOfIssue) {
+        super(yearOfIssue, manufacturer, name, power, radiation);
         this.lampsAmount = lampsAmount;
         this.setLuminousFlux(luminousFlux);
         this.setManufacturer(manufacturer);
@@ -16,22 +17,12 @@ public class FixedIlluminator extends Illuminator implements Serializable {
         this.setYearOfIssue(yearOfIssue);
     }
 
-    public FixedIlluminator() {
-    }
+
 
     public int getLampsAmount() {
         return lampsAmount;
     }
 
-    @Override
-    public String representAsText() {
-        return null;
-    }
-
-    @Override
-    public ElectricalAppliance readFromText(String s) {
-        return null;
-    }
 
     @Override
     public String toString() {

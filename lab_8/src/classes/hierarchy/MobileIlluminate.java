@@ -9,6 +9,7 @@ public class MobileIlluminate extends Illuminator implements Serializable {
 
     public MobileIlluminate(String binding, double luminousFlux,
                             String manufacturer, String name, double power, double radiation, int yearOfIssue) {
+        super(yearOfIssue, manufacturer, name, power, radiation);
         this.binding = binding;
         this.setLuminousFlux(luminousFlux);
         this.setManufacturer(manufacturer);
@@ -18,8 +19,6 @@ public class MobileIlluminate extends Illuminator implements Serializable {
         this.setYearOfIssue(yearOfIssue);
     }
 
-    public MobileIlluminate() {
-    }
 
     public String getBinding() {
         return binding;
@@ -62,20 +61,6 @@ public class MobileIlluminate extends Illuminator implements Serializable {
 //        return result.toString();
 //    }
 
-    @Override
-    public String representAsText() throws IllegalAccessException, InterruptedException {
-        return null;
-    }
-
-    @Override
-    public ElectricalAppliance readFromText(String s) throws IllegalAccessException{
-        int startIndex, endIndex;
-        for (Field field: this.getClass().getDeclaredFields()){
-            field.setAccessible(true);
-            System.out.println(field.getName() + field.get(this));
-        }
-        return null;
-    }
 
     @Override
     public String toString() {

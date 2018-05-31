@@ -2,12 +2,13 @@ package classes.hierarchy;
 
 import java.io.Serializable;
 
-/**
- *
- */
 
-public abstract class Illuminator extends ElectricalAppliance implements Serializable {
+public class Illuminator extends ElectricalAppliance implements Serializable {
     private double luminousFlux;
+
+    public Illuminator(int yearOfIssue, String manufacturer, String name, double power, double radiation) {
+        super(yearOfIssue, manufacturer, name, power, radiation);
+    }
 
     public double getLuminousFlux() {
         return luminousFlux;

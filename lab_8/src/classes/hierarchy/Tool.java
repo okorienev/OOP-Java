@@ -9,17 +9,11 @@ public class Tool extends ElectricalAppliance implements Serializable {
 
     public Tool(String toolType, int toolNoise,
                 String manufacturer, String name, double power, double radiation, int yearOfIssue) {
+        super(yearOfIssue,manufacturer, name, power, radiation);
         this.toolType = toolType;
         this.toolNoise = toolNoise;
-        this.setManufacturer(manufacturer);
-        this.setName(name);
-        this.setPower(power);
-        this.setRadiation(radiation);
-        this.setYearOfIssue(yearOfIssue);
     }
 
-    public Tool() {
-    }
 
     public String getToolType() {
         return toolType;
@@ -37,15 +31,6 @@ public class Tool extends ElectricalAppliance implements Serializable {
         this.toolNoise = toolNoise;
     }
 
-    @Override
-    public String representAsText() {
-        return null;
-    }
-
-    @Override
-    public ElectricalAppliance readFromText(String s) {
-        return null;
-    }
 
     @Override
     public String toString() {

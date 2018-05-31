@@ -7,7 +7,7 @@ import java.io.Serializable;
  * @author Oleksandr Korienev
  */
 
-public abstract class ElectricalAppliance implements Serializable{
+public class ElectricalAppliance implements Serializable{
     private int yearOfIssue;
     private String manufacturer;
     private String name;
@@ -15,9 +15,13 @@ public abstract class ElectricalAppliance implements Serializable{
     private double radiation;
     private boolean isPlugged = false;
 
-    public abstract String representAsText() throws IllegalAccessException, InterruptedException;
-
-    public abstract ElectricalAppliance readFromText(String s) throws IllegalAccessException;
+    public ElectricalAppliance(int yearOfIssue, String manufacturer, String name, double power, double radiation) {
+        this.yearOfIssue = yearOfIssue;
+        this.manufacturer = manufacturer;
+        this.name = name;
+        this.power = power;
+        this.radiation = radiation;
+    }
 
     /**
      * @param year year of manufacturing
@@ -84,8 +88,8 @@ public abstract class ElectricalAppliance implements Serializable{
 
     @Override
     public String toString(){
-        return String.format("Manufacturer: %s\nYear: %d\nPower: %s\nRadiation: %s\n",
-                manufacturer, yearOfIssue, power, radiation);
+        return String.format("Manufacturer: %s\nName: %s\nYear: %d\nPower: %s\nRadiation: %s\n",
+                manufacturer, name, yearOfIssue, power, radiation);
     }
 
     /**
