@@ -1,10 +1,11 @@
 package list;
 
 
+import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.util.*;
 
-public class MyList<E> implements List<E> {
+public class MyList<E> implements List<E>, Serializable {
 //    private int size = 0;
     private Node<E> head;
     private Node<E> tail;

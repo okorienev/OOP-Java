@@ -1,9 +1,10 @@
 package list;
 
+import java.io.Serializable;
 import java.util.ListIterator;
 import java.util.NoSuchElementException;
 
-class MyIterator<E> implements ListIterator<E> {
+class MyIterator<E> implements ListIterator<E>, Serializable {
     private Node<E> current;
     private int currentIndex = 0;
 

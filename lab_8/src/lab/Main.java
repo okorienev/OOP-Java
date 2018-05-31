@@ -42,14 +42,52 @@ public class Main {
         return result;
     }
 
-    public void Serialize(MyList list) throws Exception{
+    public static void serializeCollection(MyList list) throws Exception{
         FileOutputStream fos = new FileOutputStream("temp.out");
         ObjectOutputStream oos = new ObjectOutputStream(fos);
         oos.writeObject(list);
         oos.close();
     }
 
-    public void SerializeAndDeserializeText() throws Exception{
+    @SuppressWarnings("unchecked")
+    public static MyList<ElectricalAppliance> deserializeCollection() throws Exception{
+        FileInputStream fis = new FileInputStream("temp.out");
+        ObjectInputStream ois = new ObjectInputStream(fis);
+        MyList<ElectricalAppliance> list = (MyList<ElectricalAppliance>)ois.readObject();
+        return list;
+    }
+
+    public static void saveAsObjectSequence(MyList<ElectricalAppliance> list, String fileName) throws IOException {
+        ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(new File(fileName)));
+        for (ElectricalAppliance appliance : list) {
+            out.writeObject(appliance);
+        }
+        out.close();
+    }
+
+
+    public static MyList<ElectricalAppliance> openAsObjectSequence(String fileName) throws IOException, ClassNotFoundException {
+        ObjectInputStream in = new ObjectInputStream(new FileInputStream(new File(fileName)));
+//        MyBrilliantSet myBrilliantSet = new MyBrilliantSet();
+        MyList<ElectricalAppliance> myList = new MyList<>();
+        try {
+            ElectricalAppliance appliance = (ElectricalAppliance) in.readObject();
+            while (true) {
+                myList.add(appliance);
+                appliance= (ElectricalAppliance) in.readObject();
+            }
+        } catch (EOFException e) {
+            in.close();
+        }
+        return myList;
+    }
+
+
+
+
+
+
+    public static void SerializeAndDeserializeText() throws Exception{
         //writing text
         BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter( new File("sequence.txt")));
         String delimiter = "---------";
@@ -82,7 +120,15 @@ public class Main {
     }
 
     public static void main(String[] args) throws Exception{
-
+        serializeCollection(new MyList<>(Arrays.asList(createDefaultElements())));
+        for (ElectricalAppliance appliance : deserializeCollection()) {
+            System.out.println(appliance);
+        }
+        saveAsObjectSequence(new MyList<>(Arrays.asList(createDefaultElements())),
+                "temp2.out");
+        for (ElectricalAppliance appliance: openAsObjectSequence("temp2.out")){
+            System.out.println(appliance);
+        }
 
     }
 }
